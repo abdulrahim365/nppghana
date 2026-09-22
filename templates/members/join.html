@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Membership Application | NPP Ghana{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-4">
+
+    <!-- Header -->
+    <div class="bg-white rounded-t-2xl shadow-lg overflow-hidden">
+      <div class="bg-red-700 text-white text-center py-6">
+        <h1 class="text-3xl md:text-4xl font-bold">NEW PATRIOTIC PARTY (NPP)</h1>
+        <p class="text-xl mt-2 font-medium">MEMBERSHIP APPLICATION FORM</p>
+        <p class="text-sm mt-1 opacity-90">NOT FOR SALE</p>
+      </div>
+
+      <div class="p-6 md:p-10">
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="mb-6 p-4 rounded-lg text-center font-medium
+                        {% if message.tags == 'success' %} bg-green-100 text-green-800
+                        {% else %} bg-red-100 text-red-800 {% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="POST" class="space-y-8">
+          {% csrf_token %}
+
+          <!-- A. PERSONAL DATA -->
+          <div>
+            <h2 class="text-xl font-bold text-red-700 border-b-2 border-red-700 pb-2 mb-6">
+              A. PERSONAL DATA
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Title</label>
+                <select name="title" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+                  <option value="">Select</option>
+                  <option>Mr</option>
+                  <option>Mrs</option>
+                  <option>Miss</option>
+                  <option>Ms</option>
+                  <option>Dr</option>
+                  <option>Prof</option>
+                  <option>Hon</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Surname</label>
+                <input type="text" name="surname" required
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">First Name</label>
+                <input type="text" name="first_name" required
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Other Names</label>
+                <input type="text" name="other_names"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Gender</label>
+                <div class="flex gap-6 mt-2">
+                  <label class="flex items-center gap-2">
+                    <input type="radio" name="gender" value="Male" class="w-4 h-4"> Male
+                  </label>
+                  <label class="flex items-center gap-2">
+                    <input type="radio" name="gender" value="Female" class="w-4 h-4"> Female
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Date of Birth</label>
+                <input type="date" name="date_of_birth"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-sm font-semibold mb-2">Residential Address</label>
+                <input type="text" name="residential_address"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Email Address</label>
+                <input type="email" name="email" required
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Phone Number</label>
+                <input type="tel" name="phone" required
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Hometown</label>
+                <input type="text" name="hometown"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Region</label>
+                <select name="region" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+                  <option value="">Select Region</option>
+                  <option>Greater Accra</option>
+                  <option>Ashanti</option>
+                  <option>Western</option>
+                  <option>Eastern</option>
+                  <option>Central</option>
+                  <option>Volta</option>
+                  <option>Northern</option>
+                  <option>Upper East</option>
+                  <option>Upper West</option>
+                  <option>Bono</option>
+                  <option>Bono East</option>
+                  <option>Ahafo</option>
+                  <option>Western North</option>
+                  <option>Oti</option>
+                  <option>Savannah</option>
+                  <option>North East</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Occupation</label>
+                <input type="text" name="occupation"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- B. ELECTORAL DATA -->
+          <div>
+            <h2 class="text-xl font-bold text-red-700 border-b-2 border-red-700 pb-2 mb-6">
+              B. ELECTORAL DATA
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Voter Identification Number</label>
+                <input type="text" name="voter_id"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Polling Station Name / Number</label>
+                <input type="text" name="polling_station"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold mb-2">Constituency / Branch</label>
+                <input type="text" name="constituency"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- Declaration -->
+          <div class="bg-gray-50 p-6 rounded-xl border">
+            <label class="flex items-start gap-3">
+              <input type="checkbox" name="declaration" required class="mt-1 w-5 h-5">
+              <span class="text-sm text-gray-700">
+                I hereby agree to abide by the Constitution of the New Patriotic Party. 
+                I agree to pay all applicable membership dues promptly and regularly.
+              </span>
+            </label>
+          </div>
+
+          <button type="submit"
+                  class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 rounded-xl text-lg transition">
+            Submit Membership Application
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

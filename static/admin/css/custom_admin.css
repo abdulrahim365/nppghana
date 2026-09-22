@@ -1,0 +1,86 @@
+/* Header */
+#header {
+  background: #b91c1c !important;
+  color: #fff !important;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+#user-tools a {
+  color: #fee2e2 !important;
+}
+
+#user-tools a:hover {
+  color: #fff !important;
+}
+
+/* Module headers */
+.module h2,
+.module caption,
+inline-group h2 {
+  background: #991b1b !important;
+  color: #fff !important;
+}
+
+/* Buttons */
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+  background: #b91c1c !important;
+  border-color: #991b1b !important;
+  border-radius: 6px !important;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+a.button:hover {
+  background: #991b1b !important;
+}
+
+.button.default,
+input[type="submit"].default {
+  background: #7f1d1d !important;
+}
+
+/* Sidebar / nav */
+#nav-sidebar .current-model {
+  background: #fef2f2 !important;
+}
+
+/* Links */
+a:link,
+a:visited {
+  color: #b91c1c;
+}
+
+/* Object tools */
+.object-tools a {
+  background: #b91c1c !important;
+  border-radius: 6px !important;
+}
+
+/* Page background */
+body {
+  background: #f8fafc !important;
+}
+
+#content {
+  padding-top: 20px;
+}
+
+/* Breadcrumbs */
+div.breadcrumbs {
+  background: #7f1d1d !important;
+  color: #fecaca !important;
+}
+
+div.breadcrumbs a {
+  color: #fff !important;
+}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Leadership | NPP Ghana{% endblock %}
+
+{% block content %}
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+    
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-gray-800 mb-4">Our Leadership</h1>
+      <p class="text-xl text-gray-600">The men and women driving Ghana’s progress</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- Dr. Bawumia -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+        <img src="{% static 'images/bawumia.jpg' %}" 
+             alt="Dr. Mahamudu Bawumia" 
+             class="w-full h-80 object-cover object-top">
+        <div class="p-6 text-center">
+          <h3 class="text-2xl font-bold text-gray-800">Mahamudu Bawumia</h3>
+          <p class="text-red-700 font-semibold mt-1">Flagbearer</p>
+          <p class="text-gray-600 mt-4 text-sm">
+            Economist and former Vice President of Ghana. Leading the party into the future.
+          </p>
+        </div>
+      </div>
+
+      <!-- John Kufuor -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+        <img src="{% static 'images/kufuor.jpg' %}" 
+             alt="John Kufuor" 
+             class="w-full h-80 object-cover object-top">
+        <div class="p-6 text-center">
+          <h3 class="text-2xl font-bold text-gray-800">John Agyekum Kufuor</h3>
+          <p class="text-red-700 font-semibold mt-1">Former President</p>
+          <p class="text-gray-600 mt-4 text-sm">
+            President of Ghana from 2001 to 2009. Led the first peaceful democratic transition.
+          </p>
+        </div>
+      </div>
+
+      <!-- Nana Akufo-Addo -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+        <img src="{% static 'images/nana-addo.jpg' %}" 
+             alt="Nana Akufo-Addo" 
+             class="w-full h-80 object-cover object-top">
+        <div class="p-6 text-center">
+          <h3 class="text-2xl font-bold text-gray-800">Nana Akufo-Addo</h3>
+          <p class="text-red-700 font-semibold mt-1">Former President</p>
+          <p class="text-gray-600 mt-4 text-sm">
+            President of Ghana from 2017 to 2025. Champion of Free SHS and digitalization.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

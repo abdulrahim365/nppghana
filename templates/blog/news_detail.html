@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} | NPP Ghana{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-6">
+
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+      
+      {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-96 object-cover">
+      {% endif %}
+
+      <div class="p-10">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ post.title }}</h1>
+        
+        <p class="text-gray-500 mb-8">
+          Published on {{ post.created_at|date:"F d, Y" }}
+        </p>
+
+        <div class="prose max-w-none text-gray-700 leading-relaxed">
+          {{ post.content|linebreaks }}
+        </div>
+
+        <div class="mt-10">
+          <a href="{% url 'blog:news_list' %}" 
+             class="inline-block bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-semibold transition">
+            ← Back to News
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+{% endblock %}

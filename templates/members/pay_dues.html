@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pay Dues | NPP Ghana{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-gradient-to-b from-red-50 to-white">
+  <div class="max-w-4xl mx-auto px-6">
+
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Pay Your Dues</h1>
+      <p class="text-gray-600">Select a tier and pay securely with Paystack</p>
+    </div>
+
+    <!-- Tier cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      {% for t in tiers %}
+      <button type="button"
+              onclick="selectTier('{{ t.name }}', {{ t.amount }})"
+              id="tier-{{ t.name }}"
+              class="tier-btn bg-white border-2 border-gray-200 rounded-2xl p-5 text-center hover:border-red-600 transition">
+        <h3 class="font-bold text-lg text-gray-800">{{ t.name }}</h3>
+        <p class="text-2xl font-extrabold text-red-700 mt-2">GHS {{ t.amount }}</p>
+        <p class="text-xs text-gray-500">per month</p>
+      </button>
+      {% endfor %}
+    </div>
+
+    <!-- Payer form -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 max-w-lg mx-auto">
+      <input type="hidden" id="tier" value="">
+      <input type="hidden" id="amount" value="">
+
+      <div class="mb-4 p-3 bg-gray-50 rounded-xl text-center">
+        <span class="text-sm text-gray-500">Selected:</span>
+        <span id="selectedLabel" class="font-bold text-red-700">None</span>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold mb-1">Full Name</label>
+          <input type="text" id="full_name" required
+                 class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Email</label>
+          <input type="email" id="email" required
+                 class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1">Phone</label>
+          <input type="tel" id="phone"
+                 class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-600 outline-none"
+                 placeholder="024XXXXXXX">
+        </div>
+
+        <button type="button" onclick="payDues()"
+                class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-4 rounded-xl transition">
+          Pay with Paystack
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  function selectTier(name, amount) {
+    document.getElementById("tier").value = name;
+    document.getElementById("amount").value = amount;
+    document.getElementById("selectedLabel").textContent = name + " — GHS " + amount;
+
+    document.querySelectorAll(".tier-btn").forEach(function (btn) {
+      btn.classList.remove("border-red-600", "ring-2", "ring-red-600");
+    });
+    var el = document.getElementById("tier-" + name);
+    if (el) el.classList.add("border-red-600", "ring-2", "ring-red-600");
+  }
+
+  function payDues() {
+    var tier = document.getElementById("tier").value;
+    var name = document.getElementById("full_name").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var phone = document.getElementById("phone").value.trim();
+
+    if (!tier) {
+      alert("Please select a dues tier");
+      return;
+    }
+    if (!name || !email) {
+      alert("Please enter name and email");
+      return;
+    }
+
+    var formData = new FormData();
+    formData.append("tier", tier);
+    formData.append("full_name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+
+    fetch("{% url 'members:initiate_dues' %}", {
+      method: "POST",
+      body: formData
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data.status) {
+        alert(data.message || "Could not start payment");
+        return;
+      }
+      var handler = PaystackPop.setup({
+        key: data.public_key,
+        email: data.email,
+        amount: data.amount,
+        currency: "GHS",
+        ref: data.reference,
+        metadata: {
+          custom_fields: [
+            { display_name: "Tier", variable_name: "tier", value: data.tier },
+            { display_name: "Name", variable_name: "full_name", value: data.name }
+          ]
+        },
+        callback: function (response) {
+          window.location.href =
+            "{% url 'members:verify_dues' %}?reference=" + response.reference;
+        },
+        onClose: function () {
+          alert("Payment window closed.");
+        }
+      });
+      handler.openIframe();
+    })
+    .catch(function () {
+      alert("Network error. Try again.");
+    });
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dues Paid | NPP Ghana{% endblock %}
+{% block content %}
+<section class="py-20 bg-green-50">
+  <div class="max-w-lg mx-auto px-6 text-center bg-white rounded-2xl shadow-xl p-10">
+    <div class="text-5xl text-green-500 mb-4">✓</div>
+    <h1 class="text-3xl font-bold mb-2">Dues Payment Successful</h1>
+    <p class="text-gray-600 mb-6">Thank you for supporting the party.</p>
+    <div class="text-left bg-gray-50 rounded-xl p-4 space-y-2 text-sm mb-8">
+      <p><span class="text-gray-500">Name:</span> <strong>{{ payment.full_name }}</strong></p>
+      <p><span class="text-gray-500">Tier:</span> <strong>{{ payment.tier }}</strong></p>
+      <p><span class="text-gray-500">Amount:</span> <strong>GHS {{ payment.amount }}</strong></p>
+      <p><span class="text-gray-500">Reference:</span> <span class="font-mono text-xs">{{ payment.reference }}</span></p>
+    </div>
+    <a href="{% url 'home' %}" class="inline-block bg-red-700 text-white px-8 py-3 rounded-full font-semibold">Back Home</a>
+  </div>
+</section>
+{% endblock %}

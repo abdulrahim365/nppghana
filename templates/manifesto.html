@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Manifesto | NPP Ghana{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Our Manifesto</h1>
+      <p class="text-xl text-gray-600">Building a Prosperous Ghana for All</p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 space-y-8 text-gray-700">
+      <p class="text-lg leading-relaxed">
+        The New Patriotic Party’s vision is anchored on freedom, opportunity, and shared prosperity. Our policies are designed to create jobs, expand education, improve healthcare, and modernize Ghana’s economy.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-red-50 p-6 rounded-xl">
+          <h3 class="font-bold text-red-700 text-xl mb-2">Education</h3>
+          <p>Free Senior High School and continuous investment in quality education for every Ghanaian child.</p>
+        </div>
+        <div class="bg-red-50 p-6 rounded-xl">
+          <h3 class="font-bold text-red-700 text-xl mb-2">Healthcare</h3>
+          <p>Strengthening the National Health Insurance Scheme and expanding access to quality healthcare.</p>
+        </div>
+        <div class="bg-red-50 p-6 rounded-xl">
+          <h3 class="font-bold text-red-700 text-xl mb-2">Jobs & Economy</h3>
+          <p>Supporting private sector growth, entrepreneurship, and industrialization to create sustainable jobs.</p>
+        </div>
+        <div class="bg-red-50 p-6 rounded-xl">
+          <h3 class="font-bold text-red-700 text-xl mb-2">Digital Ghana</h3>
+          <p>Accelerating digital transformation, e-governance, and innovation across the country.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

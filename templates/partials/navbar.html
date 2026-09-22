@@ -1,0 +1,90 @@
+{% load static %}
+
+<nav class="bg-white shadow-lg sticky top-0 z-50 border-b-4 border-red-700">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="flex items-center gap-3 group">
+        <img src="{% static 'images/npp-flag.png' %}"
+             alt="NPP Flag"
+             class="w-12 h-12 object-contain rounded-full shadow-md group-hover:scale-105 transition duration-300"
+             onerror="this.src='https://via.placeholder.com/48/A00D1E/FFFFFF?text=NPP'">
+        <div>
+          <h1 class="text-2xl font-extrabold text-red-700 tracking-tight leading-none">NEW PATRIOTIC PARTY</h1>
+          <p class="text-xs text-gray-500 font-medium -mt-1">Development in Freedom</p>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="{% url 'home' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">Home</a>
+        <a href="{% url 'about' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">About</a>
+        <a href="{% url 'leadership' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">Leadership</a>
+        <a href="{% url 'achievements' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">Achievements</a>
+        <a href="{% url 'blog:news_list' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">News</a>
+        <a href="{% url 'members:pay_dues' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">Pay Dues</a>
+        <a href="{% url 'members:join' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">Join</a>
+        <a href="{% url 'members:claims' %}" class="nav-link text-gray-700 hover:text-red-700 font-medium transition relative">Claims</a>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="{% url 'members:pay_dues' %}"
+           class="border-2 border-red-700 text-red-700 hover:bg-red-700 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">
+          Pay Dues
+        </a>
+        <a href="{% url 'members:donate' %}"
+           class="bg-red-700 hover:bg-red-800 text-white px-6 py-2.5 rounded-full font-semibold shadow-md hover:shadow-lg transition">
+          Donate
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button type="button" onclick="toggleMenu()" class="lg:hidden text-gray-700 hover:text-red-700 focus:outline-none" aria-label="Menu">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-100">
+    <div class="px-6 py-4 space-y-1">
+      <a href="{% url 'home' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">Home</a>
+      <a href="{% url 'about' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">About</a>
+      <a href="{% url 'leadership' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">Leadership</a>
+      <a href="{% url 'achievements' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">Achievements</a>
+      <a href="{% url 'blog:news_list' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">News</a>
+      <a href="{% url 'members:pay_dues' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">Pay Dues</a>
+      <a href="{% url 'members:join' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">Join</a>
+      <a href="{% url 'members:claims' %}" class="block py-2 text-gray-700 hover:text-red-700 font-medium">Claims</a>
+      <a href="{% url 'members:donate' %}"
+         class="block mt-3 bg-red-700 text-white text-center py-3 rounded-full font-semibold">
+        Donate Now
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #b91c1c;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+</style>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (menu) menu.classList.toggle('hidden');
+  }
+</script>
