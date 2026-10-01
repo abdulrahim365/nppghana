@@ -27,6 +27,11 @@ SECRET_KEY = 'django-insecure-rsp)(ma3vu4xg*%fzp$(f#j6xo7*8%*=y#)c!mt&598th=oq%a
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-rsp)(ma3vu4xg*%fzp$(f#j6xo7*8%*=y#)c!mt&598th=oq%a')
+
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = ['*']   # Or better: ['your-app-name.onrender.com']
 
 
 # Application definition
@@ -50,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
