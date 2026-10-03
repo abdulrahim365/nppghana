@@ -105,7 +105,7 @@ DATABASES = {
         conn_max_age=600,
         conn_health_checks=True,
     )
-}
+}    
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
